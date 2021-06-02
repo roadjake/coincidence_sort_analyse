@@ -19,3 +19,11 @@ USEFUL github commands:
 8) In a .gitignore file, add the names of all the files that you want github to ignore when adding to the staging area.
 
 9) git branch branchname //makes a branch called branchname but does not change us to the branch.
+
+10) git checkout branchname //changes the branch from master to branchname 
+
+11) git remote add origin https://github.com/roadjake/coincidence_sort_analyse.git
+
+12) git remote 
+
+13)git push -u origin master
