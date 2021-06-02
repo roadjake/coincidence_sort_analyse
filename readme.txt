@@ -7,6 +7,8 @@ USEFUL github commands:
 
 3) git config --global user.name 'Jake Johnson'  	//configure the git repository to appropriate credentials.
    git config --global user.email 'jake.johnson@kuleuven.be' 
+   git config --global http.version HTTP/1.1 //this is to enable push from the p-drive remote server. Otherwise we have a failure when writing 
+   git config http.postBuffer 524288000   //this enabled the upload to occur, maybe large file size of data stopped this from happening before
 
 4) git add readme.txt //adds readme.txt to the git repository.
 
@@ -26,4 +28,5 @@ USEFUL github commands:
 
 12) git remote 
 
-13)git push -u origin master
+13)git push -u origin master (at this point we have to login to validate credentials)
+
