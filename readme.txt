@@ -14,4 +14,8 @@ USEFUL github commands:
 
 6)git add . //adds everything to the staging area.
  
+7) git commit -m 'whatever comment we want.'
 
+8) In a .gitignore file, add the names of all the files that you want github to ignore when adding to the staging area.
+
+9) git branch branchname //makes a branch called branchname but does not change us to the branch.
