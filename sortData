@@ -1,0 +1,77 @@
+#!/bin/sh
+#Script to run one file singularly!!!
+#
+# Give directories for executable, raw data and output root file
+   exe='/home/jgc/sfw/WM_sort/anaSort'
+ binDir='bin/' # keep * at the end otherwise will not find file
+ txtDir='bin/'
+rootDir='Root/'
+
+# File extensions
+ astExt='*'
+ binExt='.bin'
+ txtExt='.txt'
+rootExt='.root'
+
+# Keep file number with fixed width of four digits,
+# padded with zeroes and find the name of the file
+n=`printf %04d $1`
+f=$binDir$astExt$n$binExt
+file="$(basename $f)"
+nameBase="${file%.bin}"
+
+# If file exists continue, if not exit script
+if [ ! -f $binDir$file ]; then
+#	echo "  Sorting file $file"
+#else
+	echo "\n ***************************   "
+	echo   " *         ERROR           *   "
+	echo   " ***************************   "
+	echo   " *                         *   "
+	echo   " * No file ending in $n  *     "
+	echo   " *                         *   "
+	echo   " *************************** \n"
+	exit 1;
+fi
+
+HFS=$(sed '10q;d' config.cfg)
+
+if [ $HFS -eq "1" ]; then
+	binFile=$binDir$nameBase$binExt
+	txtFile=$txtDir$nameBase$txtExt
+	rootFile=$rootDir$nameBase$rootExt
+	if [ ! -f $txtFile ]; then
+		echo "\n ***************************   "
+		echo   " *         ERROR           *   "
+		echo   " ***************************   "
+		echo   " *                         *   "
+		echo   " *      No laser file      *   "
+		echo   " *                         *   "
+		echo   " *************************** \n"
+		exit 1;
+	fi
+	echo "  *********************************************"
+	echo "  Sort data info:"
+	echo "  Input file:   $binFile"
+	echo "  Laser file:   $txtFile"
+	echo "  Output file:  $rootFile"
+	echo "  *********************************************\n"
+	$exe << EOF
+	$rootFile
+	$txtFile 
+	$binFile
+EOF
+else
+	binFile=$binDir$nameBase$binExt
+	rootFile=$rootDir$nameBase$rootExt
+	echo "  *********************************************"
+	echo "  Sort data info:"
+	echo "  Input file:   $binFile"
+	echo "  Output file:  $rootFile"
+	echo "  *********************************************\n"
+	#$dirAna/anaSort << EOF
+	$exe << EOF
+	$rootFile 
+	$binFile 
+EOF
+fi

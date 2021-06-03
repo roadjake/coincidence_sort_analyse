@@ -1,0 +1,29 @@
+#!/bin/sh
+#
+# Script to sort files singularly or sequentially
+#
+echo "\n  *********************************************"
+echo   "  * Run job info:                             *"
+echo   "  *********************************************"
+HFS=$(sed '10q;d' config.cfg)
+if [ $HFS -eq "1" ]; then
+	echo "  Sorting HFS and decay data"
+else
+	echo "  Sorting decay data"
+fi
+
+if [ $# -eq "1" ]; then
+	echo "  Sorting single file, filenumber: $1"
+	sh ./sortData $1
+else
+	echo "  Sorting files sequentially"
+	echo "  Initial Run number is: $1"
+	echo "  Final Run number is:   $2"
+	for j in $(seq $1 $2)
+	do
+	sh ./sortData $j
+	done
+fi
+echo "  *********************************************"
+echo "  *               End of run jobs             *"
+echo "  *********************************************\n"
