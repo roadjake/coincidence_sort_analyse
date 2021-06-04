@@ -1,0 +1,40 @@
+WHAT DO THE DIFFERENT SCRIPT CONTAIN?
+
+'Ana.cc'-> includes 'Ana.hh' and 'AnaRoot.hh'
+        -> initializes some of the parameters; 
+        -> reads the calibration file and the histo file; 
+        -> decides whether to create different coinc-trees;
+        -> creates the root file from the bin file; 
+        -> sorts the data into the different histograms, trees and matrices defined; 
+        -> makes coincidences if required.
+
+'Ana.hh'-> includes 'AnaDefs.hh' and 'AnaRoot.hh'
+        -> creates public classes for different trees;
+        -> defines a series of variables and arrays;
+        -> defines an array of 1D histograms, different 2D histograms, and several other 1D histo.
+
+'AnaDefs.hh'-> defines all different parametes that need to be set to sort the data (like the energy and time threshold);
+            -> defines different structures that will be used to sort the data in 'Ana.cc'
+            -> here we can set different values for some of the parameters, in order to sort the data according to our needs.
+
+'AnaDict.cc'-> includes 'AnaRoot.hh'
+            -> I think it defines the classes for the storage of data from Si detectors and Ge detectors
+            -> yes, I am not really sure about this, and there's also written that it shouldn't be changed, so I don't know.
+
+'AnaMain.cc'-> includes 'Ana.hh'
+            -> reads the bin file and starts the sorting.
+
+'AnaRoot.hh'-> includes 'AnaDefs.hh'
+            -> defines the classes for the storage of data, and all the arrays and variables inside them. 
+
+'calib.cfg'-> says that the calibration file is calib.dat
+
+'calib.dat'-> contains the calibration parameters for the different detectors (values should be changed only on the first row of each block.
+
+'config.cfg'-> contains parameters that set some functions on or off (like si-si coincidence)
+
+'hist.cfg'-> contains all the histograms used to sort the data (name, number of bins, minimum bin value, maximum bin value)
+
+'run'-> contains the commands to start the sorting of the data
+
+'sortData'-> contains the info to run each bin file singularly (where the bin file is stored, where the root file will be created...)
